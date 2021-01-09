@@ -1,4 +1,4 @@
-package nobel.springbootpetclinic.model;
+package nobel.spring.petclinic.model;
 
 import java.time.LocalDate;
 

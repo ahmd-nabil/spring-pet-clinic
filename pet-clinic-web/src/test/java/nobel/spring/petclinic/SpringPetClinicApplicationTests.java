@@ -1,10 +1,10 @@
-package nobel.springbootpetclinic;
+package nobel.spring.petclinic;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringbootPetClinicApplicationTests {
+class SpringPetClinicApplicationTests {
 
     @Test
     void contextLoads() {

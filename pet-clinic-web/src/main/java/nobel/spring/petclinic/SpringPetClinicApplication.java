@@ -1,13 +1,13 @@
-package nobel.springbootpetclinic;
+package nobel.spring.petclinic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootPetClinicApplication {
+public class SpringPetClinicApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootPetClinicApplication.class, args);
+        SpringApplication.run(SpringPetClinicApplication.class, args);
     }
 
 }

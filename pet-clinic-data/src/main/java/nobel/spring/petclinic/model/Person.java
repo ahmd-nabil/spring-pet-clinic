@@ -1,6 +1,6 @@
 package nobel.spring.petclinic.model;
 
-public abstract class Person {
+public abstract class Person extends BaseEntity{
 
     private String firstName;
 

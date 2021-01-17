@@ -7,5 +7,22 @@
 <body>
     <h1 th:text="'VETS INDEX PAGE'"></h1>
     <p th:text="'LIST ALL VETS HERE'"></p>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="vet: ${vets}">
+            <td th:text="${vet.id}"></td>
+            <td th:text="${vet.firstName}"></td>
+            <td th:text="${vet.lastName}"></td>
+        </tr>
+        </tbody>
+    </table>
 </body>
 </html>

@@ -1,14 +1,14 @@
 package nobel.spring.petclinic.services.map;
 
 import nobel.spring.petclinic.model.BaseEntity;
-import nobel.spring.petclinic.services.CrudService;
+import nobel.spring.petclinic.services.BasicCrudService;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class BasicMapService<T extends BaseEntity, ID> implements CrudService<T, ID> {
+public class BasicMapService<T extends BaseEntity, ID> implements BasicCrudService<T, ID> {
     protected Map<ID, T> map = new HashMap<>();
 
     @Override
@@ -18,11 +18,13 @@ public class BasicMapService<T extends BaseEntity, ID> implements CrudService<T,
 
     @Override
     public T save(T object) {
-        return save((ID) object.getId(), object);
-    }
-
-    private T save(ID id, T object) {
-        map.put(id, object);
+        if(object != null) {
+            if(object.getId() == null)
+                object.setId(getNextId());
+            map.put((ID) object.getId(), object);
+        } else {
+            throw new RuntimeException("Entities Can't Be Null");
+        }
         return object;
     }
 
@@ -39,5 +41,9 @@ public class BasicMapService<T extends BaseEntity, ID> implements CrudService<T,
     @Override
     public void deleteById(ID id) {
         map.remove(id);
+    }
+
+    private Long getNextId() {
+        return (long) (map.keySet().size() + 1);
     }
 }

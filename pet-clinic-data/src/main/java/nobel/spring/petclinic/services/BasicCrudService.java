@@ -2,7 +2,7 @@ package nobel.spring.petclinic.services;
 
 import java.util.Set;
 
-public interface CrudService<T, ID>{
+public interface BasicCrudService<T, ID>{
     T findById(ID id);
 
     T save(T object);

@@ -8,7 +8,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class BasicMapService<T extends BaseEntity, ID> implements BasicCrudService<T, ID> {
+public class BasicMapService<T extends BaseEntity, ID extends Long> implements BasicCrudService<T, ID> {
+    private long nextId = 1;
     protected Map<ID, T> map = new HashMap<>();
 
     @Override
@@ -20,7 +21,7 @@ public class BasicMapService<T extends BaseEntity, ID> implements BasicCrudServi
     public T save(T object) {
         if(object != null) {
             if(object.getId() == null)
-                object.setId(getNextId());
+                object.setId(nextId++);
             map.put((ID) object.getId(), object);
         } else {
             throw new RuntimeException("Entities Can't Be Null");
@@ -41,9 +42,5 @@ public class BasicMapService<T extends BaseEntity, ID> implements BasicCrudServi
     @Override
     public void deleteById(ID id) {
         map.remove(id);
-    }
-
-    private Long getNextId() {
-        return (long) (map.keySet().size() + 1);
     }
 }

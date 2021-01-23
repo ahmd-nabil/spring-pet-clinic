@@ -1,7 +1,6 @@
 package nobel.spring.petclinic.services.map;
 
 import nobel.spring.petclinic.model.Owner;
-import nobel.spring.petclinic.model.PetType;
 import nobel.spring.petclinic.services.OwnerService;
 import nobel.spring.petclinic.services.PetService;
 import nobel.spring.petclinic.services.PetTypeService;
@@ -27,14 +26,13 @@ public class OwnerMapService extends BasicMapService<Owner, Long> implements Own
             owner.getPets().forEach(pet -> {
                 if(pet.getPetType() != null) {
                     if(pet.getPetType().getId() == null) {
-                        PetType savedPetType = petTypeService.save(pet.getPetType());
-                        pet.setPetType(savedPetType); // the same PetType but after persisted.
+                        petTypeService.save(pet.getPetType());
                     }
                 } else {
                     throw new RuntimeException("Pet Type can't be null.");
                 }
 
-                if(pet.getId() != null)
+                if(pet.getId() == null)
                     petService.save(pet);
 
             });

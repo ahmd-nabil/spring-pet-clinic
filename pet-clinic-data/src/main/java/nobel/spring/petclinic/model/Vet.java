@@ -1,6 +1,7 @@
 package nobel.spring.petclinic.model;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -8,12 +9,17 @@ import java.util.Set;
 
 @Setter
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "vets")
 public class Vet extends Person{
+
+    public Vet() {}
+
+    public Vet(String firstName, String lastName, Set<Specialty> specialties) {
+        super(firstName, lastName);
+        this.specialties = specialties;
+    }
+
     @ManyToMany(fetch = FetchType.EAGER)        //default fetch type is LAZY for @ManyToMany
     @JoinTable(
             name = "vet_specialty",

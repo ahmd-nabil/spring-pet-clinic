@@ -4,9 +4,11 @@ import nobel.spring.petclinic.model.Owner;
 import nobel.spring.petclinic.services.OwnerService;
 import nobel.spring.petclinic.services.PetService;
 import nobel.spring.petclinic.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
+@Profile({"default", "map"})
 public class OwnerMapService extends BasicMapService<Owner, Long> implements OwnerService {
 
     private final PetService petService;

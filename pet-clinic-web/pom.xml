@@ -23,6 +23,7 @@
     </properties>
 
     <dependencies>
+        <!-- This what makes pet-clinic-web inherit web-clinic-data Classes, dependencies, plugins, etc... -->
         <dependency>
             <groupId>nobel.spring</groupId>
             <artifactId>pet-clinic-data</artifactId>

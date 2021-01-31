@@ -3,13 +3,9 @@ package nobel.spring.petclinic.services.map;
 import nobel.spring.petclinic.model.BaseEntity;
 import nobel.spring.petclinic.services.BasicCrudService;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class BasicMapService<T extends BaseEntity, ID extends Long> implements BasicCrudService<T, ID> {
-    private long nextId = 1;
     protected Map<ID, T> map = new HashMap<>();
 
     @Override
@@ -20,8 +16,10 @@ public class BasicMapService<T extends BaseEntity, ID extends Long> implements B
     @Override
     public T save(T object) {
         if(object != null) {
-            if(object.getId() == null)
-                object.setId(nextId++);
+            if(object.getId() == null) {
+                Long maxId = Collections.max(map.keySet());
+                object.setId(maxId + 1);
+            }
             map.put((ID) object.getId(), object);
         } else {
             throw new RuntimeException("Entities Can't Be Null");
